@@ -20,6 +20,7 @@ function getPlayerChoice(){                             //No error handling, ass
     return playerInput 
 }
 function playRound(playerSelection, computerSelection){
+    console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
     if( (playerSelection === rock &&        computerSelection === scissors) || 
         (playerSelection === paper &&       computerSelection === rock) ||
         (playerSelection === scissors &&    computerSelection === paper)){
@@ -40,5 +41,4 @@ function playRound(playerSelection, computerSelection){
 
 const playerSelection = getPlayerChoice();
 const computerSelection = getComputerChoice();
-playRound();
-console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
+playRound(playerSelection,computerSelection);
