@@ -16,9 +16,19 @@ function getComputerChoice(){
 }
 
 function getPlayerChoice(){                             //No error handling, assume user enters valid values
-    let playerInput = prompt("Rock, Paper, Scissors?");
-    playerInput = playerInput.charAt(0).toUpperCase() + playerInput.slice(1,playerInput.length).toLowerCase(); 
-    return playerInput 
+    while(true) {
+        //playerInput = checkUserInput(playerInput);
+        let playerInput = prompt("Rock, Paper, Scissors?");
+        playerInput = playerInput.charAt(0).toUpperCase() + playerInput.slice(1,playerInput.length).toLowerCase(); 
+        console.log(playerInput,rock,paper,scissors);
+        if (playerInput === rock || playerInput === paper || playerInput === scissors){
+            return playerInput; 
+        }
+        else{
+            console.log("Wrong input, try again.");
+            continue;
+        }
+    }
 }
 function playRound(playerSelection, computerSelection){
     console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
