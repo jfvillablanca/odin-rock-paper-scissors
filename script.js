@@ -19,6 +19,26 @@ function getPlayerChoice(){                             //No error handling, ass
     playerInput = playerInput.charAt(0).toUpperCase() + playerInput.slice(1,playerInput.length).toLowerCase(); 
     return playerInput 
 }
+function playRound(playerSelection, computerSelection){
+    if( (playerSelection === rock &&        computerSelection === scissors) || 
+        (playerSelection === paper &&       computerSelection === rock) ||
+        (playerSelection === scissors &&    computerSelection === paper)){
+            console.log("You win!");
+            return;
+        }
+    else if( (computerSelection === rock &&     playerSelection === scissors) || 
+             (computerSelection === paper &&    playerSelection === rock) ||
+             (computerSelection === scissors && playerSelection === paper)){
+                 console.log("Computer wins!");
+                 return;
+        }
+    else{
+        console.log("It's a tie");
+        return;
+    }
+}
 
-
+const playerSelection = getPlayerChoice();
+const computerSelection = getComputerChoice();
+playRound();
 console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
