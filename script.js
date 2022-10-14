@@ -1,10 +1,10 @@
 const rock = 'Rock';
 const paper = 'Paper';
 const scissors = 'Scissors';
-let playerScore = 0, computerScore = 0, roundCounter = 1;
+let playerScore = 0, computerScore = 0, roundCounter = 0, noOfGameRounds = 5;
 
 function playRound(playerSelection, computerSelection) {
-    console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
+    //console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
     if ((playerSelection === rock && computerSelection === scissors) ||
         (playerSelection === paper && computerSelection === rock) ||
         (playerSelection === scissors && computerSelection === paper)) {
@@ -38,10 +38,8 @@ const game = function(playerChoice){
     const computerSelection = getComputerChoice();
     const playerScoreDisplay = document.querySelector('#playerScore');
     const computerScoreDisplay = document.querySelector('#computerScore');
-    const roundDisplay = document.querySelector('#roundCycle');
     const gameStatus = document.querySelector('.status');
-
-
+    const roundDisplay = document.querySelector('#roundCycle');
 
     let winner = playRound(playerSelection, computerSelection);
     if (winner === 'Player') {
@@ -60,8 +58,7 @@ const game = function(playerChoice){
 //       console.log("It's a tie");
         gameStatus.textContent = `It's a tie!`;
     }
-    roundCounter++;
-    if (roundCounter >= 5){
+    if (roundCounter >= noOfGameRounds){
         if (playerScore > computerScore) {
             //console.log(`For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`);
             gameStatus.textContent = `For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`;
@@ -74,36 +71,42 @@ const game = function(playerChoice){
             //console.log(`The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`);
             gameStatus.textContent = `The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`
         }
-    const divContainer = document.querySelector('.container');
-    const newGameButton = document.createElement('button');
-    newGameButton.textContent = "New Game?";
-    divContainer.appendChild(newGameButton);
-    newGameButton.addEventListener('click',newGame);
+    newGame();
+    
+//    const divContainer = document.querySelector('.container');
+//    const newGameButton = document.createElement('button');
+//    newGameButton.textContent = "New Game?";
+//    divContainer.appendChild(newGameButton);
+//    newGameButton.addEventListener('click',newGame);
     }
-    roundDisplay.textContent = `Round ${roundCounter}`;
+    roundCounter++;
+    roundDisplay.textContent = `Round: ${roundCounter}`;
 }
 
 const newGame = function(){
-    playerScore = 0, computerScore = 0, roundCounter = 1;
-
+    playerScore = 0, computerScore = 0, roundCounter = 0;
+    console.trace();
     const divContainer = document.querySelector('.container');
     const playerScoreDisplay = document.querySelector('#playerScore');
     const computerScoreDisplay = document.querySelector('#computerScore');
     const roundDisplay = document.querySelector('#roundCycle');
     const gameStatus = document.querySelector('.status');
-    divContainer.removeChild(divContainer.lastChild);
+
     playerScoreDisplay.textContent = `Player: ${playerScore}`;
     computerScoreDisplay.textContent = `Computer: ${computerScore}`;
     gameStatus.textContent = "";
     roundDisplay.textContent = `Round: ${roundCounter}`;
     
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach((button) => {
+    const newGameButton = document.querySelector('.newGame');
+    newGameButton.style.visibility = "hidden";
 
-        buttons.forEach((button) => {
-            button.addEventListener('click', game);
+    const buttons = document.querySelectorAll('.buttons');
+    buttons.forEach((button) => {
+        button.addEventListener('click', game);
         });
-    });
+
+    newGameButton.style.visibility = "visible";
+    newGameButton.addEventListener('click',newGame);
 }
 
 newGame();
