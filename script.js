@@ -61,7 +61,7 @@ const game = function(playerChoice){
         gameStatus.textContent = `It's a tie!`;
     }
     roundCounter++;
-    if (roundCounter > 5){
+    if (roundCounter >= 5){
         if (playerScore > computerScore) {
             //console.log(`For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`);
             gameStatus.textContent = `For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`;
@@ -76,14 +76,27 @@ const game = function(playerChoice){
         }
     const divContainer = document.querySelector('.container');
     const newGameButton = document.createElement('button');
+    newGameButton.textContent = "New Game?";
     divContainer.appendChild(newGameButton);
-    playerScore = 0, computerScore = 0, roundCounter = 1;
-
+    newGameButton.addEventListener('click',newGame);
     }
     roundDisplay.textContent = `Round ${roundCounter}`;
 }
 
 const newGame = function(){
+    playerScore = 0, computerScore = 0, roundCounter = 1;
+
+    const divContainer = document.querySelector('.container');
+    const playerScoreDisplay = document.querySelector('#playerScore');
+    const computerScoreDisplay = document.querySelector('#computerScore');
+    const roundDisplay = document.querySelector('#roundCycle');
+    const gameStatus = document.querySelector('.status');
+    divContainer.removeChild(divContainer.lastChild);
+    playerScoreDisplay.textContent = `Player: ${playerScore}`;
+    computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+    gameStatus.textContent = "";
+    roundDisplay.textContent = `Round: ${roundCounter}`;
+    
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
 
