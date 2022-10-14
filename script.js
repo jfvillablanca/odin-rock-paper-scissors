@@ -15,7 +15,7 @@ function getComputerChoice(){
     }
 }
 
-function getPlayerChoice() {
+function listenPlayerChoice() {
     //    while(true) {
     //        let playerInput = prompt("Rock, Paper, Scissors?");
     //        playerInput = playerInput.charAt(0).toUpperCase() + playerInput.slice(1).toLowerCase(); 
@@ -40,15 +40,18 @@ function getPlayerChoice() {
 
     let winner = playRound(playerSelection, computerSelection);
     if (winner === 'Player') {
-        playerScore++;
+        //playerScore++;
         console.log("You win!");
+        return [1,0];
     }
     else if (winner === 'Computer') {
         computerScore++;
         console.log("Computer wins!");
+        return [0,1];
     }
     else {
         console.log("It's a tie");
+        return [0,0];
     }
 }
 
@@ -71,18 +74,20 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerScore = 0, computerScore = 0;
     for (let i = 0; i < 1; i++) {
-        //console.log(`Round ${i + 1}, Player Score: ${playerScore}, Computer Score: ${computerScore}`);
-        getPlayerChoice();
+        console.log(`Round ${i + 1}, Player Score: ${playerScore}, Computer Score: ${computerScore}`);
+        [playerScoreIncrement,computerScoreIncrement] = listenPlayerChoice();
+        playerScore += playerScoreIncrement;
+        computerScore += computerScoreIncrement;
     }
-//    if (playerScore > computerScore) {
-//        console.log(`For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`);
-//    }
-//    else if (playerScore < computerScore) {
-//        console.log(`For a final score of ${computerScore} against the player's ${playerScore}, the computer wins the match!`);
-//    }
-//    else {
-//        console.log(`The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`);
-//    }
-//    console.log("Thanks for playing");
+    if (playerScore > computerScore) {
+        console.log(`For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`);
+    }
+    else if (playerScore < computerScore) {
+        console.log(`For a final score of ${computerScore} against the player's ${playerScore}, the computer wins the match!`);
+    }
+    else {
+        console.log(`The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`);
+    }
+    console.log("Thanks for playing");
 }
 game();
