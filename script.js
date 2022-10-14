@@ -1,6 +1,7 @@
 const rock = 'Rock';
 const paper = 'Paper';
 const scissors = 'Scissors';
+let playerScore = 0, computerScore = 0, roundCounter = 1;
 
 function playRound(playerSelection, computerSelection) {
     console.log(`Player Choice: ${playerSelection}, Computer Choice: ${computerSelection}`);
@@ -33,12 +34,12 @@ function getComputerChoice(){
 
 
 const game = function(playerChoice){
-    let playerScore = 0, computerScore = 0;
     console.log(playerChoice.target.textContent);
     const playerSelection = playerChoice.target.textContent;
     const computerSelection = getComputerChoice();
     const playerScoreDisplay = document.querySelector('#playerScore');
     const computerScoreDisplay = document.querySelector('#computerScore');
+    const roundDisplay = document.querySelector('#roundCycle');
     let winner = playRound(playerSelection, computerSelection);
     if (winner === 'Player') {
         playerScore++;
@@ -53,6 +54,8 @@ const game = function(playerChoice){
     else {
         console.log("It's a tie");
     }
+    roundCounter++;
+    roundDisplay.textContent = `Round ${roundCounter}`;
 //    for (let i = 0; i < 5; i++) {
 //        console.log(`Round ${i + 1}, Player Score: ${playerScore}, Computer Score: ${computerScore}`);
 //        [playerScoreIncrement,computerScoreIncrement] = listenPlayerChoice();
@@ -72,7 +75,6 @@ const game = function(playerChoice){
 }
 //game();
 
-let playerScore = 0, computerScore = 0;
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
  //   button.addEventListener('click', () => {
