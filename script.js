@@ -33,8 +33,8 @@ function getComputerChoice(){
 
 
 const game = function(playerChoice){
-    console.log(playerChoice);
-    const playerSelection = playerChoice.textContent;
+    console.log(playerChoice.target.textContent);
+    const playerSelection = playerChoice.target.textContent;
     const computerSelection = getComputerChoice();
 
     let winner = playRound(playerSelection, computerSelection);
