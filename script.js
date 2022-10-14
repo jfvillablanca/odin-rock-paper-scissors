@@ -61,30 +61,36 @@ const game = function(playerChoice){
         gameStatus.textContent = `It's a tie!`;
     }
     roundCounter++;
+    if (roundCounter > 5){
+        if (playerScore > computerScore) {
+            //console.log(`For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`);
+            gameStatus.textContent = `For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`;
+        }
+        else if (playerScore < computerScore) {
+            //console.log(`For a final score of ${computerScore} against the player's ${playerScore}, the computer wins the match!`);
+            gameStatus.textContent = `For a final score of ${computerScore} against the player's ${playerScore}, the computer wins the match!`;
+        }
+        else {
+            //console.log(`The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`);
+            gameStatus.textContent = `The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`
+        }
+    const divContainer = document.querySelector('.container');
+    const newGameButton = document.createElement('button');
+    divContainer.appendChild(newGameButton);
+    playerScore = 0, computerScore = 0, roundCounter = 1;
+
+    }
     roundDisplay.textContent = `Round ${roundCounter}`;
-//    for (let i = 0; i < 5; i++) {
-//        console.log(`Round ${i + 1}, Player Score: ${playerScore}, Computer Score: ${computerScore}`);
-//        [playerScoreIncrement,computerScoreIncrement] = listenPlayerChoice();
-//        playerScore += playerScoreIncrement;
-//        computerScore += computerScoreIncrement;
-//    }
-//    if (playerScore > computerScore) {
-//        console.log(`For a final score of ${playerScore} against the computer's ${computerScore}, the player wins the match!`);
-//    }
-//    else if (playerScore < computerScore) {
-//        console.log(`For a final score of ${computerScore} against the player's ${playerScore}, the computer wins the match!`);
-//    }
-//    else {
-//        console.log(`The match is tied for a final score of ${playerScore} to ${computerScore} to both competitors!`);
-//    }
-    console.log("Thanks for playing");
 }
-//game();
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-
+const newGame = function(){
+    const buttons = document.querySelectorAll('button');
     buttons.forEach((button) => {
-        button.addEventListener('click', game);
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', game);
+        });
     });
-});
+}
+
+newGame();
