@@ -34,25 +34,31 @@ function getComputerChoice(){
 
 
 const game = function(playerChoice){
-    console.log(playerChoice.target.textContent);
     const playerSelection = playerChoice.target.textContent;
     const computerSelection = getComputerChoice();
     const playerScoreDisplay = document.querySelector('#playerScore');
     const computerScoreDisplay = document.querySelector('#computerScore');
     const roundDisplay = document.querySelector('#roundCycle');
+    const gameStatus = document.querySelector('.status');
+
+
+
     let winner = playRound(playerSelection, computerSelection);
     if (winner === 'Player') {
         playerScore++;
-        console.log(`You win!`);
+//        console.log(`You win!`);
         playerScoreDisplay.textContent = `Player: ${playerScore}`;
+        gameStatus.textContent = `You win against the computer!`;
     }
     else if (winner === 'Computer') {
         computerScore++;
-        console.log("Computer wins!");
+//        console.log("Computer wins!");
         computerScoreDisplay.textContent = `Computer: ${computerScore}`;
+        gameStatus.textContent = `You lost against the computer!`;
     }
     else {
-        console.log("It's a tie");
+//       console.log("It's a tie");
+        gameStatus.textContent = `It's a tie!`;
     }
     roundCounter++;
     roundDisplay.textContent = `Round ${roundCounter}`;
@@ -77,10 +83,6 @@ const game = function(playerChoice){
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
- //   button.addEventListener('click', () => {
- //       console.log(this);
- //   //    game;
- //   });
 
     buttons.forEach((button) => {
         button.addEventListener('click', game);
