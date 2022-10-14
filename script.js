@@ -33,24 +33,25 @@ function getComputerChoice(){
 
 
 const game = function(playerChoice){
+    let playerScore = 0, computerScore = 0;
     console.log(playerChoice.target.textContent);
     const playerSelection = playerChoice.target.textContent;
     const computerSelection = getComputerChoice();
-
+    const playerScoreDisplay = document.querySelector('#playerScore');
+    const computerScoreDisplay = document.querySelector('#computerScore');
     let winner = playRound(playerSelection, computerSelection);
     if (winner === 'Player') {
-        //playerScore++;
-        console.log(`You win! Player Score: ${playerScore}`);
-       // return [1, 0];
+        playerScore++;
+        console.log(`You win!`);
+        playerScoreDisplay.textContent = `Player: ${playerScore}`;
     }
     else if (winner === 'Computer') {
         computerScore++;
         console.log("Computer wins!");
-        //return [0, 1];
+        computerScoreDisplay.textContent = `Computer: ${computerScore}`;
     }
     else {
         console.log("It's a tie");
-        //return [0, 0];
     }
 //    for (let i = 0; i < 5; i++) {
 //        console.log(`Round ${i + 1}, Player Score: ${playerScore}, Computer Score: ${computerScore}`);
